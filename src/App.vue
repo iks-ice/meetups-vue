@@ -1,23 +1,48 @@
 <template>
   <div id="app">
+    <progress-bar :progress="78"/>
+    <div class="wrapper bg-grey">
+      <meetups-header />
+      <main class="main">
+        <router-view />
+      </main>
+      <footer>
+        <!-- <meetups-footer /> -->
+      </footer>
+    </div>
   </div>
 </template>
 
 <script>
-
+import MeetupsHeader from '@/components/MeetupsHeader';
+import ProgressBar from '@/components/ProgressBar';
 export default {
   name: 'App',
-  components: {},
-}
+  components: {
+    MeetupsHeader,
+    ProgressBar,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+:root {
+  --body-color: #34423f;
+  --white: #fff;
+  --grey: #cbd4e9;
+  --grey-light: #f8f9fc;
+  --grey-2: #dee1e1;
+  --grey-3: #ced4d3;
+  --grey-8: #5e706c;
+  --blue: #4c6bb6;
+  --blue-2: #688dc0;
+  --blue-light: #b8c5e2;
+  --blue-extra: #eaedf7;
+  --red: #db3851;
+  --red-light: #e8656f;
+  --green: #24a37e;
+  --green-light: #dff2ec;
+  --default-cover: url('/images/undraw_conference_speaker_6nt7.svg');
 }
+
 </style>

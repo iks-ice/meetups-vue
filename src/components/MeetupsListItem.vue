@@ -31,7 +31,7 @@
 
 <script>
 import { getMeetupCoverLink} from '@/utils/index.js';
-import AppIcon from './AppIcon.vue';
+import AppIcon from './base-components/AppIcon.vue';
 const loggedUser = "Eugeny F.";
 export default {
     name: 'MeetupsListItem',

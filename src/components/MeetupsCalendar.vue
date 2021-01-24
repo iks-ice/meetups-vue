@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue';
+import BaseButton from './base-components/BaseButton.vue';
 import {createIdGenerator, MY, MYD} from '@/utils/index.js';
 const dayId = createIdGenerator();
 const eventId = createIdGenerator();

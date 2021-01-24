@@ -4,11 +4,17 @@
         <div class="container">
             <div class="meetup">
             <div class="meetup__content">
-                <h3>Описание</h3>
-                <meetup-description :description='meetup.description'/>
-
-                <h3>Программа</h3>
-                <meetup-agenda :agenda='meetup.agenda'/>
+                <div class="content-tabs">
+                    <div class="content-tabs__nav">
+                        <router-link :to="{name: 'description'}" class="content-tabs__tab">
+                            <h3>Описание</h3>
+                        </router-link>
+                        <router-link :to="{name: 'agenda'}" class="content-tabs__tab">
+                            <h3>Программа</h3>
+                        </router-link>
+                    </div>
+                </div>
+                <router-view :meetup="meetup"/>
             </div>
             <div v-if='meetup' class="meetup__aside">
                 <meetup-info :organizer='meetup.organizer' :place='meetup.place' :date='date'/>
@@ -20,19 +26,19 @@
 
 <script>
 import MeetupCover from './MeetupCover.vue';
-import MeetupDescription from './MeetupDescription.vue';
-import MeetupAgenda from './MeetupAgenda.vue';
 import MeetupInfo from './MeetupInfo.vue';
 import { getMeetupCoverLink} from '@/utils/index.js';
 export default {
     name: 'MeetupView',
     components: {
         MeetupCover,
-        MeetupDescription,
-        MeetupAgenda,
         MeetupInfo,
     },
-
+    data() {
+        return {
+            selected: ""
+        }
+    },
     props: {
         meetup: {
             type: Object,

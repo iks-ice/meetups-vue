@@ -1,6 +1,6 @@
 <template>
   <div class="meetup-agenda">
-    <div v-for='item in agenda' :key='item.id' class="meetup-agenda__item">
+    <div v-for='item in meetup.agenda' :key='item.id' class="meetup-agenda__item">
       <meetup-agenda-item :agendaItem='item' />
     </div>
   </div>
@@ -15,8 +15,8 @@ export default {
   },
 
   props: {
-    agenda: {
-      type: Array,
+    meetup: {
+      type: Object,
       required: true,
     },
   },

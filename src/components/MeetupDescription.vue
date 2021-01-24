@@ -1,12 +1,13 @@
 <template>
-  <p class="meetup-description">{{description}}</p>
+  <p class="meetup-description">{{meetup.description}}</p>
 </template>
 
 <script>
 export default {
   props: {
-    description: {
-      type: String,
+    meetup: {
+      type: Object,
+      required: true,
     },
   },
 }

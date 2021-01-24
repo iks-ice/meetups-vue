@@ -13,15 +13,35 @@ export default {
             meetup: null,
         };
     },
-    async beforeRouteEnter(to, from, next) {
-        const m = await fetchMeetup(to.params.meetupId).then(res => res.json());
-        next(vm => vm.setData(m));
+    props: {
+        meetupId: {
+            type: Number,
+            required: true,
+        },
     },
-    methods: {
-        setData(m) {
-            this.meetup = m;
+    inject: {
+        showLoading: 'showLoading',
+    },
+    async mounted() {
+        console.log(typeof this.meetupId);
+        try {
+            this.showLoading(true);
+            this.meetup = await fetchMeetup(this.meetupId).then(res => res.json());
         }
-    }
+        catch(error) {
+            this.error = error;
+        }
+        finally {
+            this.showLoading(false);
+        }
+    },
+    // beforeRouteEnter(to, from, next) {
+    //     showLoading(true);
+    //     fetchMeetup(to.params.meetupId).then(res => res.json())
+    //         .then(meetup => next(vm => vm.setData('meetup', meetup)))
+    //         .catch(err => next(vm => vm.setData('error', err)))
+    //         .finally(() => showLoading(false));
+    // }
 }
 </script>
 

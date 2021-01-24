@@ -1,24 +1,8 @@
 <template>
     <div class="container">
-        <div class="filters-panel">
-            <div class="filters-panel__col">
-                <date-filters v-model="date"/>
-            </div>
-            <div class="filters-panel__col">
-                <div class="form-group form-group_inline" id="filters-panel__search">
-                    <app-input v-model="search" placeholder="Поиск" inline rounded small>
-                        <template #left-icon>
-                            <app-icon icon="search" />
-                        </template>
-                    </app-input>
-                </div>
-                <div class="form-group form-group_inline">
-                    <display-filter v-model="display" />
-                </div>
-            </div>
-        </div> 
+        <filter-panel :filters="filters"/>  
         <template v-if="meetups">
-            <component :is="display" :meetups="meetups | byState(date) | bySearch(search)"/>
+            <component :is="filters.view" :meetups="meetups | byState(filters.category) | bySearch(filters.search)"/>
         </template>
         <template v-else-if="error">
             {{error}}
@@ -27,23 +11,22 @@
 </template>
 
 <script>
-import AppIcon from '@/components/AppIcon.vue';
-import AppInput from '@/components/AppInput.vue';
-import DateFilters from '@/components/DateFilter.vue';
-import DisplayFilter from '@/components/DisplayFilter.vue';
+import FilterPanel from '@/components/FilterPanel.vue';
 import MeetupsList from '@/components/MeetupsList.vue';
 import MeetupsCalendar from '@/components/MeetupsCalendar.vue';
 import {fetchMeetups} from '@/utils/index.js';
 export default {
     name: "MeetupsPage",
-    components: {AppInput, AppIcon, DateFilters, DisplayFilter, MeetupsList, MeetupsCalendar},
+    components: { MeetupsList, MeetupsCalendar, FilterPanel},
     data() {
         return {
-            search: '',
-            date: 'all',
-            display: 'MeetupsList',
             meetups: null,
             error: null,
+            filters: {
+                search: '',
+                category: 'all',
+                view: 'MeetupsList',
+            }
         };
     },
     filters: {
@@ -65,18 +48,28 @@ export default {
                 meetups;
         }
     },
-    methods: {
-
+    inject: {
+        showLoading: 'showLoading',
     },
     async mounted() {
         try {
+            this.showLoading(true);
             this.meetups = await fetchMeetups().then(res => res.json());
         }
         catch(error) {
-            this.error = error.message;
-            console.log(error);
+            this.error = error;
+        }
+        finally {
+            this.showLoading(false);
         }
     },
+    // beforeRouteEnter(to, from, next) {
+    //     showLoading(true);
+    //     fetchMeetups().then(res => res.json())
+    //         .then(meetups => next(vm => vm.setData('meetups', meetups)))
+    //         .catch(err => next(vm => vm.setData('error', err.message)))
+    //         .finally(() => showLoading(false));
+    // },
 }
 </script>
 

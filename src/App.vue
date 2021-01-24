@@ -1,26 +1,27 @@
 <template>
   <div id="app">
-    <progress-bar :progress="78"/>
     <div class="wrapper bg-grey">
-      <meetups-header />
-      <main class="main">
-        <router-view />
-      </main>
-      <footer>
-        <!-- <meetups-footer /> -->
-      </footer>
+      <progress-bar-provider>
+        <meetups-header />
+        <main class="main">
+          <router-view />
+        </main>
+        <footer>
+          <!-- <meetups-footer /> -->
+        </footer>
+      </progress-bar-provider>
     </div>
   </div>
 </template>
 
 <script>
 import MeetupsHeader from '@/components/MeetupsHeader';
-import ProgressBar from '@/components/ProgressBar';
+import ProgressBarProvider from '@/components/ProgressBarProvider';
 export default {
   name: 'App',
   components: {
     MeetupsHeader,
-    ProgressBar,
+    ProgressBarProvider,
   },
 };
 </script>

@@ -17,7 +17,7 @@
 
 <script>
 import {createFormatter} from '@/utils/index.js';
-import AppIcon from './AppIcon.vue';
+import AppIcon from './base-components/AppIcon.vue';
 export default {
   name: "MeetupInfo",
   components: {AppIcon},

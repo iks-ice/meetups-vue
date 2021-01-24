@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AppIcon from './AppIcon.vue';
+import AppIcon from '.base-components/AppIcon.vue';
 import {createIdGenerator} from '@/utils/index.js';
 const genId = createIdGenerator();
 export default {

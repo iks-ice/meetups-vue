@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseButton from './BaseButton';
+import BaseButton from './BaseButton.vue';
 export default {
   name: 'DangerButton',
   components: {

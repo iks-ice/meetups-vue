@@ -1,28 +1,33 @@
 <template>
   <div id="app">
     <div class="wrapper bg-grey">
-      <progress-bar-provider>
-        <meetups-header />
+      <!-- <progress-bar-provider> -->
+        <meetups-header :navigations="$options.navigations" />
         <main class="main">
           <router-view />
         </main>
-        <footer>
-          <!-- <meetups-footer /> -->
-        </footer>
-      </progress-bar-provider>
+        <meetups-footer />
+      <!-- </progress-bar-provider> -->
     </div>
   </div>
 </template>
 
 <script>
 import MeetupsHeader from '@/components/MeetupsHeader';
-import ProgressBarProvider from '@/components/ProgressBarProvider';
+import MeetupsFooter from '@/components/MeetupsFooter';
+// import ProgressBarProvider from '@/components/ProgressBarProvider';
+import {getNavigations} from '@/utils/data.js';
 export default {
   name: 'App',
   components: {
     MeetupsHeader,
-    ProgressBarProvider,
+    MeetupsFooter
+    // ProgressBarProvider,
   },
+  navigations: getNavigations(),
+  mounted() {
+    console.log(process.env.VUE_APP_API_URL);
+  }
 };
 </script>
 

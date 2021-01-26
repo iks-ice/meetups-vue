@@ -1,18 +1,18 @@
 <template>
-  <div class="transition-list meetups-list">
-      <meetups-list-item
-        v-for="meetup in meetups"
-        :key="meetup.id"
-        :meetup="meetup"
-    />
-  </div>
+    <app-list :list="meetups" class="transition-list meetups-list">
+        <template v-slot:list="{ item }">
+            <meetups-list-item :meetup="item" />
+        </template>
+    </app-list>
 </template>
 
 <script>
 import MeetupsListItem from './MeetupsListItem.vue';
+import AppList from './base-components/AppList.vue';
 export default {
     components: {
         MeetupsListItem,
+        AppList,
     },
     props: {
         meetups: {

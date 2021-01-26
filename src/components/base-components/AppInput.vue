@@ -27,51 +27,51 @@
 
 <script>
 export default {
-  name: 'AppInput',
-  inheritAttrs: false,
-  model: {
-    prop: 'value',
-    event: 'input',
-  },
-  data() {
-    return {
-      hasLeftIcon: false,
-      hasRightIcon: false,
-    };
-  },
-  props: {
-    small: Boolean,
-    rounded: Boolean,
-    multiline: {
-      type: Boolean,
-      default: false,
-    },
-    value: String,
-  },
-  computed: {
-    componentListeners() {
-      return {
-        ...this.$listeners,
-        input: (e) => this.$emit('input', e.target.value),
-        change: (e) => this.$emit('change', e.target.value),
-      };
-    },
-    tag() {
-      return this.multiline ? 'textarea' : 'input';
-    },
-  },
-  updated() {
-    this.updateHasIcons();
-  },
-  mounted() {
-    this.updateHasIcons();
-  },
-  methods: {
-    updateHasIcons() {
-      this.hasLeftIcon = !!this.$slots['left-icon'];
-      this.hasRightIcon = !!this.$slots['right-icon'];
-    },
-  },
+	name: "AppInput",
+	inheritAttrs: false,
+	model: {
+		prop: "value",
+		event: "input",
+	},
+	data() {
+		return {
+			hasLeftIcon: false,
+			hasRightIcon: false,
+		};
+	},
+	props: {
+		small: Boolean,
+		rounded: Boolean,
+		multiline: {
+			type: Boolean,
+			default: false,
+		},
+		value: String,
+	},
+	computed: {
+		componentListeners() {
+			return {
+				...this.$listeners,
+				input: (e) => this.$emit("input", e.target.value),
+				change: (e) => this.$emit("change", e.target.value),
+			};
+		},
+		tag() {
+			return this.multiline ? "textarea" : "input";
+		},
+	},
+	updated() {
+		this.updateHasIcons();
+	},
+	mounted() {
+		this.updateHasIcons();
+	},
+	methods: {
+		updateHasIcons() {
+			this.hasLeftIcon = !!this.$slots["left-icon"];
+			this.hasRightIcon = !!this.$slots["right-icon"];
+		},
+	},
 };
 </script>
 

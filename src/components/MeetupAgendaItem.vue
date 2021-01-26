@@ -18,7 +18,7 @@
 
 <script>
 import AppIcon from './base-components/AppIcon.vue';
-import { agendaItemTitles, agendaItemIcons } from '@/utils/index.js';
+import { agendaItemTitles, agendaItemIcons } from '@/utils/data.js';
 export default {
   name: 'MeetupAgendaItem',
   components: {AppIcon},

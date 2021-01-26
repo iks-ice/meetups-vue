@@ -19,21 +19,20 @@ export default {
             required: true,
         },
     },
-    inject: {
-        showLoading: 'showLoading',
-    },
+    // inject: {
+    //     showLoading: 'showLoading',
+    // },
     async mounted() {
-        console.log(typeof this.meetupId);
         try {
-            this.showLoading(true);
+            //this.showLoading(true);
             this.meetup = await fetchMeetup(this.meetupId).then(res => res.json());
         }
         catch(error) {
             this.error = error;
         }
-        finally {
-            this.showLoading(false);
-        }
+        // finally {
+        //     this.showLoading(false);
+        // }
     },
     // beforeRouteEnter(to, from, next) {
     //     showLoading(true);

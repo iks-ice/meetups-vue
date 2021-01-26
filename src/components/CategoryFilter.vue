@@ -1,42 +1,30 @@
 <template>
-  <div class="form-check">
-        <div class="form-check__group" v-for="item in filters" :key="item.id">
-            <input 
-                type="radio"
-                name="date-filter"
-                class="form-check__input"
-                :value="item.value"
-                @change="handleChange"
-                :checked="item.value === value"
-            />
-            <label class="form-check__label">{{ item.title }}</label>
-        </div>
+    <div class="form-check">
+        <app-list :list="$options.categories" inline>
+            <template v-slot:list="{ item }">
+                <div class="form-check__group">
+                    <input 
+                        type="radio"
+                        name="category-filter"
+                        class="form-check__input"
+                        :value="item.value"
+                        @change="onChange"
+                        :checked="item.value === value"
+                    />
+                    <label class="form-check__label">{{ item.title }}</label>
+                </div>
+            </template>
+        </app-list>
     </div>
 </template>
 
 <script>
-import {createIdGenerator} from '@/utils/index.js';
-const genId = createIdGenerator();
-const filters = [
-    {
-        id: genId(),
-        value: 'all',
-        title: 'Все',
-    },
-    {
-        id: genId(),
-        value: 'past',
-        title: 'Прошедшие',
-    },
-    {
-        id: genId(),
-        value: 'future',
-        title: 'Ожидаемые',
-    },
-    
-];
+import AppList from '@/components/base-components/AppList.vue';
+import {getCategories} from '@/utils/data.js';
+
 export default {
-    name: "DateFilter",
+    name: "CategoryFilter",
+    components: {AppList},
     props: {
         value: {
             type: String,
@@ -47,16 +35,12 @@ export default {
         prop: 'value',
         event: 'change',
     },
-    data() {
-        return {
-            filters,
-        }
-    },
+    categories: getCategories(),
     methods: {
-        handleChange(e) {
-            this.$emit('change', e.target.value)
-        },
-    },
+        onChange({target: {value}}) {
+            this.$emit('change', value);
+        }
+    }
 }
 </script>
 

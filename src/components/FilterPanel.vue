@@ -23,6 +23,7 @@ import AppIcon from '@/components/base-components/AppIcon.vue';
 import AppInput from '@/components/base-components/AppInput.vue';
 import CategoryFilter from '@/components/CategoryFilter.vue';
 import ViewSwitch from '@/components/ViewSwitch.vue';
+
 export default {
     name: 'FilterPanel',
     components: {AppInput, AppIcon, CategoryFilter, ViewSwitch},

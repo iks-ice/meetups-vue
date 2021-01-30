@@ -71,6 +71,11 @@ ul {
 .pre-line {
   white-space: pre-line;
 }
+.all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media all and (max-width: 992px) {
   .container {

@@ -52,14 +52,18 @@ export const getLoginForm = () => {
             value: "",
             label: "Email",
             type: "email",
+            name: "email",
             placeholder: "Введите e-mail",
+            required: true,
         },
         {
             id: genId(),
             value: "",
             label: "Пароль",
             type: "password",
+            name: "password",
             placeholder: "Введите пароль",
+            required: true,
         },
     ];
 };
@@ -71,6 +75,7 @@ export const getRegisterForm = () => {
             value: "",
             label: "Email",
             type: "email",
+            name: "email",
             placeholder: "Введите e-mail",
             required: true,
         },
@@ -79,6 +84,7 @@ export const getRegisterForm = () => {
             value: "",
             label: "Имя",
             type: "text",
+            name: "fullname",
             placeholder: "Введите имя",
             required: true,
         },
@@ -87,6 +93,7 @@ export const getRegisterForm = () => {
             value: "",
             label: "Пароль",
             type: "password",
+            name: "password",
             placeholder: "Введите пароль",
             required: true,
         },
@@ -95,7 +102,16 @@ export const getRegisterForm = () => {
             value: "",
             label: "Повтор пароля",
             type: "password",
+            name: "password",
             placeholder: "Введите пароль еще раз",
+            required: true,
+        },
+        {
+            id: genId(),
+            value: false,
+            label: "Я согласен с условиями",
+            type: "checkbox",
+            name: "termsAccepted",
             required: true,
         },
     ];
@@ -126,6 +142,6 @@ export const agendaItemIcons = {
 export const formDataFromArray = (arr) => arr.reduce(
     (acc, item) => ({
       ...acc,
-      [item.type]: item.value,
+      [item.name]: item.value,
     }), {},
   );

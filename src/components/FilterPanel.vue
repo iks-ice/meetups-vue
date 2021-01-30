@@ -1,18 +1,18 @@
 <template>
   <div class="filters-panel">
         <div class="filters-panel__col">
-            <category-filter v-model="filters.category"/>
+            <category-filter v-model="filters_.category"/>
         </div>
         <div class="filters-panel__col">
             <div class="form-group form-group_inline" id="filters-panel__search">
-                <app-input v-model="filters.search" placeholder="Поиск" inline rounded small>
+                <app-input v-model="filters_.search" placeholder="Поиск" inline rounded small>
                     <template #left-icon>
                         <app-icon icon="search" />
                     </template>
                 </app-input>
             </div>
             <div class="form-group form-group_inline">
-                <view-switch v-model="filters.view" />
+                <view-switch v-model="filters_.view" />
             </div>
         </div>
     </div> 

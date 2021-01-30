@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-  <filter-panel :filters="filters" />
+  <filter-panel :filters.sync="filters" />
   <template v-if="meetups">
     <component
     :is="filters.view"
     :meetups="meetups | byState(filters.category) | bySearch(filters.search)"
     />
   </template>
-  <template v-else-if="error">
+  <!-- <template v-else-if="error">
     {{ error }}
-  </template>
+  </template> -->
   </div>
 </template>
 
@@ -17,10 +17,17 @@
 import FilterPanel from "@/components/FilterPanel.vue";
 import MeetupsList from "@/components/MeetupsList.vue";
 import MeetupsCalendar from "@/components/MeetupsCalendar.vue";
-import {fetchMeetups} from "@/utils/index.js";
+// import {fetchMeetups} from "@/utils/index.js";
+import http from "@/utils/http-client.js";
 export default {
   name: "MeetupsPage",
   components: { MeetupsList, MeetupsCalendar, FilterPanel},
+  // props: {
+  //   meetups: {
+  //     type: Array,
+  //     required: true,
+  //   }
+  // },
   filters: {
     byState(meetups, state) {
       if(state === "past") {
@@ -34,7 +41,6 @@ export default {
       }
     },
     bySearch(meetups, search) {
-      console.log(search);
       return search !== "" ?
         meetups.filter(meetup => JSON.stringify(meetup).toLowerCase().indexOf(search.toLowerCase()) !== -1) :
         meetups;
@@ -57,7 +63,7 @@ export default {
   async mounted() {
     try {
       //this.showLoading(true);
-      this.meetups = await fetchMeetups().then(res => res.json());
+      this.meetups = await http("/meetups");
     }
     catch(error) {
       this.error = error;

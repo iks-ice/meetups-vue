@@ -1,5 +1,5 @@
 
-export const http = async (endPoint, {body, ...customOptions}={}) => {
+const http = async (endPoint, {body, ...customOptions}={}) => {
     const url = new URL(`${process.env.VUE_APP_API_URL}${endPoint}`);
     const options = {
         method: body ? "POST" : "GET",
@@ -24,10 +24,3 @@ export const http = async (endPoint, {body, ...customOptions}={}) => {
 }
 
 export default http;
-
-const getMeetups = async () => await http('/meetups');
-
-const login = async (body) => await http('/auth/login', {body});
-const register = async (body) => await http('/auth/register', {body});
-
-export {getMeetups, login, register};

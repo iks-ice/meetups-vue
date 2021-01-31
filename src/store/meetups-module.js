@@ -1,5 +1,5 @@
 import {mutationTypes, actionTypes} from './types.js';
-import {getMeetups} from '@/utils/http-client.js';
+import {getMeetups} from '@/utils/api-services.js';
 const meetups = {
     namespaced: true,
   

@@ -44,7 +44,8 @@ import FormGroup from "@/components/base-components/FormGroup.vue";
 import AppCheckbox from "@/components/base-components/AppCheckbox.vue";
 import AppLoader from "@/components/base-components/AppLoader.vue";
 import PrimaryButton from "@/components/base-components/PrimaryButton.vue";
-import http from "@/utils/http-client.js";
+import {actionTypes} from '@/store/types.js';
+import { mapActions } from 'vuex';
 export default {
     name: "RegisterPage",
     components: {AuthComponent, AppList, FormGroup, AppInput, PrimaryButton, AppCheckbox, AppLoader},
@@ -54,17 +55,23 @@ export default {
             loading: false,
         };
     },
+    inject: {
+        success: "success",
+        error: "error",
+    },
     methods: {
+        ...mapActions('user/', {
+            register: actionTypes.REGISTER_USER,
+        }),
         async onSubmit() {
             const body = formDataFromArray(this.registerFormItems);
-            console.log(body);
             delete body.termsAccepted;
             try {
                 this.loading = true;
-                const res = await http("/auth/register", {body});
-                console.log(res);
+                await this.register({body});
+                this.success("User successfully registered");
             } catch (error) {
-                console.log(error);
+                this.error(error.message);
             } finally {
                 this.loading = false;
             }

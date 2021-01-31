@@ -1,7 +1,7 @@
 <template>
   <router-link :to="{name: 'meetup', params: {meetupId: meetup.id}}" class="meetups-list__item">
     <div class="meetups-list__col">
-        <div class="meetups-list__cover" :style="{'--bg-url': `url(${imgSrc})`}">
+        <div class="meetups-list__cover" :style="{'--bg-url': `${this.meetup.imageId ? 'url(' + imgSrc + ')' : ''}`}">
             <h5>{{meetup.title}}</h5>
         </div>
     </div>

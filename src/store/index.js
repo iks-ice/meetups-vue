@@ -1,17 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
+import Vue from 'vue';
+import Vuex from 'vuex';
+import meetups from './meetups-module.js';
+import user from './user-module.js';
 Vue.use(Vuex)
 
+
+
 export default new Vuex.Store({
-  state: {
-    meetups: null,
-  },
-  getters: {},
-  mutations: {
-  },
-  actions: {
-  },
+  strict: true,
   modules: {
+    meetups,
+    user,
   }
 })

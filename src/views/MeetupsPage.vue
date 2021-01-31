@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-  <filter-panel :filters.sync="filters" />
-  <template v-if="meetups">
-    <component
-    :is="filters.view"
-    :meetups="meetups | byState(filters.category) | bySearch(filters.search)"
-    />
-  </template>
-  <!-- <template v-else-if="error">
-    {{ error }}
-  </template> -->
+    <filter-panel :filters.sync="filters" />
+    <template v-if="meetups">
+      <component
+        :is="filters.view"
+        :meetups="meetups | byState(filters.category) | bySearch(filters.search)"
+      />
+    </template>
+    <template v-else>
+      <empty-meetups />
+    </template>
   </div>
 </template>
 
@@ -17,17 +17,13 @@
 import FilterPanel from "@/components/FilterPanel.vue";
 import MeetupsList from "@/components/MeetupsList.vue";
 import MeetupsCalendar from "@/components/MeetupsCalendar.vue";
-// import {fetchMeetups} from "@/utils/index.js";
-import http from "@/utils/http-client.js";
+import EmptyMeetups from '@/components/EmptyMeetups.vue';
+import {actionTypes} from '@/store/types.js';
+import {mapState, mapActions} from 'vuex';
+
 export default {
   name: "MeetupsPage",
-  components: { MeetupsList, MeetupsCalendar, FilterPanel},
-  // props: {
-  //   meetups: {
-  //     type: Array,
-  //     required: true,
-  //   }
-  // },
+  components: { MeetupsList, MeetupsCalendar, FilterPanel, EmptyMeetups, },
   filters: {
     byState(meetups, state) {
       if(state === "past") {
@@ -48,7 +44,6 @@ export default {
   },
   data() {
     return {
-      meetups: null,
       error: null,
       filters: {
         search: "",
@@ -57,28 +52,30 @@ export default {
       }
     };
   },
-  // inject: {
-  //   showLoading: "showLoading",
-  // },
+  computed: {
+    ...mapState('meetups', ['meetups']),
+  },
   async mounted() {
     try {
-      //this.showLoading(true);
-      this.meetups = await http("/meetups");
+      console.log('Meetups page mounted');
+      if (!this.meetups) {
+        await this.getMeetups();
+      }
     }
     catch(error) {
-      this.error = error;
+      this.error(error.message);
+      console.log(error);
     }
-    // finally {
-    //   this.showLoading(false);
-    // }
   },
-  // beforeRouteEnter(to, from, next) {
-  //     showLoading(true);
-  //     fetchMeetups().then(res => res.json())
-  //         .then(meetups => next(vm => vm.setData('meetups', meetups)))
-  //         .catch(err => next(vm => vm.setData('error', err.message)))
-  //         .finally(() => showLoading(false));
-  // },
+  inject: {
+      success: "success",
+      error: "error",
+  },
+  methods: {
+    ...mapActions('meetups/', {
+      getMeetups: actionTypes.GET_MEETUPS,
+    }),
+  },
 };
 </script>
 

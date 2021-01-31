@@ -1,5 +1,5 @@
 
-const http = async (endPoint, {body, ...customOptions}={}) => {
+export const http = async (endPoint, {body, ...customOptions}={}) => {
     const url = new URL(`${process.env.VUE_APP_API_URL}${endPoint}`);
     const options = {
         method: body ? "POST" : "GET",
@@ -11,7 +11,7 @@ const http = async (endPoint, {body, ...customOptions}={}) => {
             ...customOptions.headers,
         },
     }
-    console.log('request sent with options', options);
+    console.log(`request sent to ${url} with options`, options);
     return fetch(url, options)
         .then(async res => {
             const data = await res.json();
@@ -24,3 +24,10 @@ const http = async (endPoint, {body, ...customOptions}={}) => {
 }
 
 export default http;
+
+const getMeetups = async () => await http('/meetups');
+
+const login = async (body) => await http('/auth/login', {body});
+const register = async (body) => await http('/auth/register', {body});
+
+export {getMeetups, login, register};

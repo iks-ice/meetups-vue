@@ -34,11 +34,13 @@
 
 <script>
   import { getLoginForm, formDataFromArray } from "@/utils/data.js";
-  import AppList from "@/components/base-components/AppList.vue";
-  import AppInput from "@/components/base-components/AppInput.vue";
-  import AppLoader from "@/components/base-components/AppLoader.vue";
-  import FormGroup from "@/components/base-components/FormGroup.vue";
-  import PrimaryButton from "@/components/base-components/PrimaryButton.vue";
+  import {
+    AppList,
+    AppInput,
+    AppLoader,
+    FormGroup,
+    PrimaryButton,
+  } from "@/components/base-components";
   import { mapActions } from "vuex";
   import { actionTypes } from "@/store/types.js";
   export default {

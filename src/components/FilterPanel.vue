@@ -25,8 +25,7 @@
 </template>
 
 <script>
-  import AppIcon from "@/components/base-components/AppIcon.vue";
-  import AppInput from "@/components/base-components/AppInput.vue";
+  import { AppIcon, AppInput } from "@/components/base-components";
   import CategoryFilter from "@/components/CategoryFilter.vue";
   import ViewSwitch from "@/components/ViewSwitch.vue";
 

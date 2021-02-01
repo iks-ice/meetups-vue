@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import BaseButton from "./base-components/BaseButton.vue";
+  import { BaseButton } from "@/components/base-components";
   import { createIdGenerator, MY, MYD } from "@/utils/index.js";
   const dayId = createIdGenerator();
   const eventId = createIdGenerator();
@@ -137,7 +137,7 @@
                 diffInDays = i - count;
                 date = getNDaysBeforeAfterDate(
                   getFirstMonthDate(year, month),
-                  diffInDays
+                  diffInDays,
                 ).getDate();
                 break;
               }
@@ -145,7 +145,7 @@
                 diffInDays = i + 1;
                 date = getNDaysBeforeAfterDate(
                   getLastMonthDate(year, month),
-                  diffInDays
+                  diffInDays,
                 ).getDate();
                 break;
               }

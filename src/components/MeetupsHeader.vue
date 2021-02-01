@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import AppList from "./base-components/AppList.vue";
+  import { AppList } from "@/components/base-components";
   export default {
     name: "MeetupsHeader",
     components: {

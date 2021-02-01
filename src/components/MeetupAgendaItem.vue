@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import AppIcon from "./base-components/AppIcon.vue";
+  import { AppIcon } from "@/components/base-components";
   import { agendaItemTitles, agendaItemIcons } from "@/utils/data.js";
   export default {
     name: "MeetupAgendaItem",

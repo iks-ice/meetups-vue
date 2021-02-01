@@ -19,29 +19,29 @@
 </template>
 
 <script>
-import AppList from "@/components/base-components/AppList.vue";
-import { getCategories } from "@/utils/data.js";
+  import { AppList } from "@/components/base-components/";
+  import { getCategories } from "@/utils/data.js";
 
-export default {
-  name: "CategoryFilter",
-  components: { AppList },
-  model: {
-    prop: "value",
-    event: "change",
-  },
-  props: {
-    value: {
-      type: String,
-      required: true,
+  export default {
+    name: "CategoryFilter",
+    components: { AppList },
+    model: {
+      prop: "value",
+      event: "change",
     },
-  },
-  categories: getCategories(),
-  methods: {
-    onChange({ target: { value } }) {
-      this.$emit("change", value);
+    props: {
+      value: {
+        type: String,
+        required: true,
+      },
     },
-  },
-};
+    categories: getCategories(),
+    methods: {
+      onChange({ target: { value } }) {
+        this.$emit("change", value);
+      },
+    },
+  };
 </script>
 
 <style></style>

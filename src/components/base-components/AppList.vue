@@ -1,22 +1,22 @@
 <template>
-    <component :is="tag">
-        <slot name="list" v-for="item in list" :item="item" />
+  <component :is="tag">
+    <slot v-for="item in list" name="list" :item="item" />
 
-        <slot />
-    </component>
+    <slot />
+  </component>
 </template>
 <script>
-export default {
+  export default {
     name: "AppList",
     props: {
-        list: {
-            type: Array,
-            required: true,
-        },
-        tag: {
-            type: String,
-            default: 'span',
-        },
+      list: {
+        type: Array,
+        required: true,
+      },
+      tag: {
+        type: String,
+        default: "span",
+      },
     },
-}
+  };
 </script>

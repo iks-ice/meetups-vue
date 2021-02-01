@@ -14,7 +14,7 @@
   import MeetupAgendaItem from "./MeetupAgendaItem.vue";
   export default {
     name: "MeetupAgenda",
-    components: {MeetupAgendaItem},
+    components: { MeetupAgendaItem },
     props: {
       meetup: {
         type: Object,

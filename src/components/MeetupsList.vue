@@ -8,7 +8,7 @@
 
 <script>
   import MeetupsListItem from "./MeetupsListItem.vue";
-  import AppList from "./base-components/AppList.vue";
+  import { AppList } from "@/components/base-components";
   export default {
     components: {
       MeetupsListItem,

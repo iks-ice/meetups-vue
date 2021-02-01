@@ -49,7 +49,7 @@
   import AppLoader from "@/components/base-components/AppLoader.vue";
   import FormGroup from "@/components/base-components/FormGroup.vue";
   import PrimaryButton from "@/components/base-components/PrimaryButton.vue";
-  import AppCheckbox from "@/components/base-components/AppCheckbox.vue";
+  import { AppCheckbox } from "./base-components";
   import { mapActions } from "vuex";
   import { actionTypes } from "@/store/types.js";
   export default {

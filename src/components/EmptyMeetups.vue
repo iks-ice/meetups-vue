@@ -3,11 +3,9 @@
 </template>
 
 <script>
-export default {
-    name: 'EmptyMeetups',
-}
+  export default {
+    name: "EmptyMeetups",
+  };
 </script>
 
-<style>
-
-</style>
+<style></style>

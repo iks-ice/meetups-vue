@@ -3,44 +3,43 @@
     <div class="meetup-agenda__item-col">
       <app-icon class="icon" alt="icon" :icon="icon" />
     </div>
-    <div class="meetup-agenda__item-col">{{agendaItem.startsAt}} - {{agendaItem.endsAt}}</div>
     <div class="meetup-agenda__item-col">
-      <h5 class="meetup-agenda__title">{{title}}</h5>
-      <p v-if='agendaItem.type === "talk"'>
-        <span>{{agendaItem.speaker}}</span>
+      {{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}
+    </div>
+    <div class="meetup-agenda__item-col">
+      <h5 class="meetup-agenda__title">{{ title }}</h5>
+      <p v-if="agendaItem.type === 'talk'">
+        <span>{{ agendaItem.speaker }}</span>
         <span class="meetup-agenda__dot"></span>
-        <span class="meetup-agenda__lang">{{agendaItem.language}}</span>
+        <span class="meetup-agenda__lang">{{ agendaItem.language }}</span>
       </p>
-      <p>{{agendaItem.description}}</p>
+      <p>{{ agendaItem.description }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import AppIcon from './base-components/AppIcon.vue';
-import { agendaItemTitles, agendaItemIcons } from '@/utils/data.js';
-export default {
-  name: 'MeetupAgendaItem',
-  components: {AppIcon},
-  props: {
-    agendaItem: {
-      type: Object,
-      required: true,
+  import AppIcon from "./base-components/AppIcon.vue";
+  import { agendaItemTitles, agendaItemIcons } from "@/utils/data.js";
+  export default {
+    name: "MeetupAgendaItem",
+    components: { AppIcon },
+    props: {
+      agendaItem: {
+        type: Object,
+        required: true,
+      },
     },
-  },
 
-  computed: {
-    icon() {
-      return agendaItemIcons[this.agendaItem.type];
+    computed: {
+      icon() {
+        return agendaItemIcons[this.agendaItem.type];
+      },
+      title() {
+        return this.agendaItem.title || agendaItemTitles[this.agendaItem.type];
+      },
     },
-    title() {
-      return this.agendaItem.title || agendaItemTitles[this.agendaItem.type];
-    },
-  },
-}
+  };
 </script>
 
-<style>
-
-</style>
-
+<style></style>
